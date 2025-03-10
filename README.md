@@ -6,7 +6,7 @@ it in clean, structured Markdown format🖋️💡. Whether it’s scanned docum
 simplifies your workflow, making document management effortless and accessible.🚀
 
 # Application Link
--
+https://mistral-ocr.streamlit.app/
 
 # Technologies Used
 * Streamlit -- Front end development

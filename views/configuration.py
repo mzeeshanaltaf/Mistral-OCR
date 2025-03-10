@@ -14,7 +14,7 @@ with st.form('Mistral API Key Configuration'):
         st.warning('Please enter the valid API Key')
     else:
         st.session_state.mistral_api_key = api_key
-
+        st.success('API has been configured successfully', icon=":material/check_circle:")
 
 # Display footer
 display_footer()
