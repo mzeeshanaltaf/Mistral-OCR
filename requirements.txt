@@ -1,0 +1,5 @@
+streamlit
+email-validator
+captcha
+mistralai
+streamlit-pdf-viewer
