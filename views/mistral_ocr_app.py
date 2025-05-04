@@ -3,6 +3,7 @@ from util import *
 from datetime import datetime
 from streamlit_pdf_viewer import pdf_viewer
 
+
 if "mistral_api_key" not in st.session_state:
     st.session_state.mistral_api_key = ''
 
@@ -56,8 +57,13 @@ if uploaded_pdf is not None:
 
                 # Create a unique file name based on current date & time for download
                 file_name = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-                st.download_button("Download", data=st.session_state.markdown_mistral,file_name=f"{file_name}_mistral.md",
+                left, right = st.columns(2)
+                left.download_button("Download MD", data=st.session_state.markdown_mistral,file_name=f"{file_name}_mistral.md",
                                    type='primary', icon=':material/markdown:', help='Download the Markdown Response',
+                                   on_click="ignore")
+                pdf_data = convert_md_to_pdf(st.session_state.markdown_mistral)
+                right.download_button("Download PDF", data=pdf_data,file_name=f"{file_name}_mistral.pdf",
+                                   type='primary', icon=':material/picture_as_pdf:', help='Download in PDF Format',
                                    on_click="ignore")
 
     # Display PDF Previewer

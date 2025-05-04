@@ -2,6 +2,8 @@ import streamlit as st
 from mistralai import Mistral
 from mistralai import DocumentURLChunk, ImageURLChunk, TextChunk
 from mistralai.models import OCRResponse
+from markdown_pdf import MarkdownPdf, Section
+import io
 
 # Function for selecting LLM Model
 def check_api_key_status():
@@ -28,6 +30,18 @@ def get_combined_markdown(ocr_response: OCRResponse) -> str:
     markdowns.append(replace_images_in_markdown(page.markdown, image_data))
 
   return "\n\n".join(markdowns)
+
+def convert_md_to_pdf(md_contents):
+    # Generate PDF from markdown content
+    pdf = MarkdownPdf(toc_level=2, optimize=True)
+    pdf.add_section(Section(md_contents))
+
+    # Save PDF to bytes buffer
+    pdf_buffer = io.BytesIO()
+    pdf.save(pdf_buffer)
+    pdf_bytes = pdf_buffer.getvalue()
+
+    return pdf_bytes
 
 
 # Function to perform OCR using Mistral model
