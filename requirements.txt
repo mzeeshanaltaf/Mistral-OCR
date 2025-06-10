@@ -4,3 +4,4 @@ captcha
 mistralai
 streamlit-pdf-viewer
 markdown-pdf
+pdf2image
